@@ -241,16 +241,18 @@
     display: block;
     color: inherit;
     padding: 0 0.5em 0.5em;
+    transition: color $navigation-duration linear;
+
 
     &::after {
       content: "";
       position: absolute;
       bottom: 0;
-      width: 100%;
+      width: 0;
       height: 2px;
       background-color: $c-light;
-      display: none;
-      left: 0;
+      right: 0;
+      transition: width $navigation-duration linear;
 
       @media (min-width: $stop-scaling) {
         left: -5px;
@@ -272,7 +274,8 @@
 
     &.active {
       &::after {
-        display: block;
+        transition: backgroung-color $navigation-duration linear;
+        width: 100%;
       }
     }
 
@@ -282,8 +285,10 @@
       outline: none;
 
       &::after {
+        left: 0;
         opacity: 1;
         background-color: $c-purple;
+        width: 100%;
       }
     }
   }

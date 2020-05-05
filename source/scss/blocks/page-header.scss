@@ -1,3 +1,5 @@
+
+
 .page-header {
   position: fixed;
   top: 0;
@@ -35,6 +37,15 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
+
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: all $logo-appearing $nav-timing-fn;
+
+  .page-loaded & {
+    transform: translateX(0);
+    opacity: 1;
+  }
 
   @media (min-width: $stop-scaling) {
     top: -5px;
@@ -128,8 +139,15 @@
 }
 
 .page-header__nav {
+  opacity: 0;
   display: flex;
   align-items: center;
+  transition: all $delay-nav-appearing $nav-timing-fn 0.3s;
+
+  .page-loaded & {
+    display: flex;
+    opacity: 1;
+  }
 
   @media (max-width: $tablet) and (orientation: portrait) {
     position: fixed;
@@ -252,7 +270,9 @@
       height: 2px;
       background-color: $c-light;
       right: 0;
-      transition: width $navigation-duration linear;
+      transition-property: width, background-color;
+      transition-duration: $navigation-duration;
+      transition-timing-function: linear;
 
       @media (min-width: $stop-scaling) {
         left: -5px;
@@ -274,8 +294,16 @@
 
     &.active {
       &::after {
-        transition: backgroung-color $navigation-duration linear;
-        width: 100%;
+        width: 0;
+
+        .page-loaded & {
+          left: 0;
+          width: 100%;
+          transition-property: width;
+          transition-delay: $delay-nav-appearing;
+          transition-duration: 0.35s;
+          transition-timing-function: $nav-timing-fn;
+        }
       }
     }
 

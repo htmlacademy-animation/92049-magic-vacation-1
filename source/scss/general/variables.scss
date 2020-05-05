@@ -21,3 +21,6 @@ $retina-dppx: 1.5dppx;
 $index: 1.38871;
 
 $navigation-duration: 0.35s;
+$logo-appearing: 0.5s;
+$delay-nav-appearing: $logo-appearing - 0.1s;
+$nav-timing-fn: cubic-bezier(0.08, 0.15, 0.02, 1);
